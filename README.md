@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/vyasenenko/ktor-logger.svg)](https://jitpack.io/#vyasenenko/ktor-logger)
 # ktor logger
 
 Kotlin Wrapper 'org.slf4j:slf4j' 
