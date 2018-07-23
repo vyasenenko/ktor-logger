@@ -76,6 +76,23 @@ inline fun <T> T.logc(level: Level = KLogger.level, function: T.(ConsoleColor) -
 }
 
 /**
+ * Error console log.
+ */
+fun <T : Throwable> T.log(level: Level = KLogger.level, function: T.() -> String): T {
+    val text = function()
+    KLogger.logger?.let {
+        when (level) {
+            Level.INFO -> it.info(text, this)
+            Level.DEBUG -> it.debug(text, this)
+            Level.TRACE -> it.trace(text, this)
+            Level.WARN -> it.warn(text, this)
+            Level.ERROR -> it.error(text, this)
+        }
+    }
+    return this
+}
+
+/**
  * Console log by string.
  *
  * Before need install KLogger in Ktor app:

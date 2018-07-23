@@ -33,6 +33,12 @@ fun Application.main() {
 
     val timer = Timer()
 
+    try {
+        throw RuntimeException("Example error")
+    } catch (e : Throwable) {
+        e.log { "Error" }
+    }
+
     routing {
         get("/") {
 
@@ -56,15 +62,10 @@ class Timer : KLoggable {
 
     fun run() {
         start = Date().log { "Run in $this" }.time
-        Any().logc { it.BLUE + this.toString() }
-        val time = Date().logc { "${it.BLUE}Time in milliseconds: ${this.time}" }
-        val time2 = Date().log { "Time in milliseconds: ${this.time}" }
     }
 
     fun stop() {
         stop = Date().time
-
-// this.logc { "${it.RED}Stop timer. ${it.RESET}Time work ${stop!! - start!!} milliseconds" }
         logc { "${it.RED}Stop timer. ${it.RESET}Time work ${stop!! - start!!} milliseconds" }
     }
 }

@@ -30,6 +30,23 @@ interface KLoggable {
     }
 
     /**
+     * Error console log.
+     */
+    fun <T : Throwable> T.log(level: Level = KLogger.level, function: T.() -> String): T {
+        val text = function()
+        logger.let {
+            when (level) {
+                Level.INFO -> it.info(text, this)
+                Level.DEBUG -> it.debug(text, this)
+                Level.TRACE -> it.trace(text, this)
+                Level.WARN -> it.warn(text, this)
+                Level.ERROR -> it.error(text, this)
+            }
+        }
+        return this
+    }
+
+    /**
      * Colored console log.
      *
      * Samples:
