@@ -3,6 +3,11 @@
 
 Kotlin Wrapper 'org.slf4j:slf4j' 
 
+* First you need to set the logging in the ktor application.
+```kotlin
+install(KLogger)
+```
+
 Use examples
 * Default logging
 ```kotlin
