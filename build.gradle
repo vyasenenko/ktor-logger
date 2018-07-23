@@ -1,0 +1,61 @@
+buildscript {
+    ext.kotlin_version = '1.2.51'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group 'info.adavis'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "http://dl.bintray.com/kotlin/ktor" }
+    maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url "https://dl.bintray.com/pgutkowski/Maven" }
+    maven { url "https://dl.bintray.com/kotlin/squash" }
+}
+
+ext {
+    ktor_version = '0.9.3'
+    log_version = '1.7.24'
+    logback_version = '1.1.6'
+}
+
+dependencies {
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-runtime:$kotlin_version"
+
+    // Ktor Server
+    implementation "io.ktor:ktor-server-core:$ktor_version"
+    implementation "org.slf4j:slf4j-api:$log_version"
+
+    // Testing
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation "ch.qos.logback:logback-classic:$logback_version"
+    testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
