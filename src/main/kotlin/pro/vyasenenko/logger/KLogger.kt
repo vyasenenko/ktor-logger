@@ -31,7 +31,7 @@ class KLogger(val log: Logger, val defaultLevel: Level) {
     companion object Feature : ApplicationFeature<Application, Configuration, KLogger> {
         override val key: AttributeKey<KLogger> = AttributeKey("KLogger")
         override fun install(pipeline: Application, configure: Configuration.() -> Unit): KLogger {
-            val loggingPhase = PipelinePhase("Logger")
+            val loggingPhase = PipelinePhase("KLogger")
             val configuration = Configuration().apply(configure)
             val feature = KLogger(pipeline.log, configuration.defaultLevel)
             pipeline.insertPhaseBefore(ApplicationCallPipeline.Infrastructure, loggingPhase)

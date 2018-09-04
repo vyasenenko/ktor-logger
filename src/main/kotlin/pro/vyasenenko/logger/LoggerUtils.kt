@@ -34,7 +34,7 @@ inline fun <T> T.log(level: Level = KLogger.level, function: T.() -> String): T 
             Level.WARN -> warn(text)
             Level.ERROR -> error(text)
         }
-    } ?: throw RuntimeException("Not support KLogger! Use: install(KLogger) or interface KLoggable")
+    } ?: println(text)
     return this
 }
 
@@ -71,7 +71,7 @@ inline fun <T> T.logc(level: Level = KLogger.level, function: T.(ConsoleColor) -
             Level.WARN -> warn(text)
             Level.ERROR -> error(text)
         }
-    } ?: throw RuntimeException("Not support KLogger! Use: install(KLogger) or interface KLoggable")
+    } ?: println(text)
     return this
 }
 
@@ -88,7 +88,7 @@ fun <T : Throwable> T.log(level: Level = KLogger.level, function: T.() -> String
             Level.WARN -> it.warn(text, this)
             Level.ERROR -> it.error(text, this)
         }
-    }
+    }?: println(text)
     return this
 }
 
@@ -118,5 +118,5 @@ fun String.log(level: Level = KLogger.level) {
             Level.WARN -> warn(text)
             Level.ERROR -> error(text)
         }
-    } ?: throw RuntimeException("Not support KLogger! Use: install(KLogger) or interface KLoggable")
+    } ?: println(text)
 }
