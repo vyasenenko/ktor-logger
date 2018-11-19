@@ -12,7 +12,7 @@ import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.testing.handleRequest
 import io.ktor.server.testing.withTestApplication
-import kotlinx.coroutines.experimental.time.delay
+import kotlinx.coroutines.time.delay
 import org.junit.Test
 import org.slf4j.event.Level
 import java.time.Duration

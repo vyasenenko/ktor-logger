@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.2.51'
+    ext.kotlin_version = '1.3.10'
 
     repositories {
         mavenCentral()
@@ -26,7 +26,7 @@ repositories {
 }
 
 ext {
-    ktor_version = '0.9.3'
+    ktor_version = '1.0.0-beta-4'
     log_version = '1.7.24'
     logback_version = '1.1.6'
 }
@@ -34,7 +34,6 @@ ext {
 dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-runtime:$kotlin_version"
 
     // Ktor Server
     implementation "io.ktor:ktor-server-core:$ktor_version"

@@ -2,10 +2,11 @@ package pro.vyasenenko.logger
 
 import io.ktor.application.Application
 import io.ktor.application.ApplicationCallPipeline
+import io.ktor.application.ApplicationCallPipeline.ApplicationPhase
 import io.ktor.application.ApplicationFeature
 import io.ktor.application.log
-import io.ktor.pipeline.PipelinePhase
 import io.ktor.util.AttributeKey
+import io.ktor.util.pipeline.PipelinePhase
 import org.slf4j.Logger
 import org.slf4j.event.Level
 
@@ -34,7 +35,7 @@ class KLogger(val log: Logger, val defaultLevel: Level) {
             val loggingPhase = PipelinePhase("KLogger")
             val configuration = Configuration().apply(configure)
             val feature = KLogger(pipeline.log, configuration.defaultLevel)
-            pipeline.insertPhaseBefore(ApplicationCallPipeline.Infrastructure, loggingPhase)
+            pipeline.insertPhaseBefore(ApplicationCallPipeline.Features, loggingPhase)
             pipeline.intercept(loggingPhase) {
                 proceed()
             }
